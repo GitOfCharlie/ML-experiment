@@ -105,9 +105,9 @@ def generate_decision_tree(data_set: pd.DataFrame, eps: float):
     # 对每个最高增益特征的取值进行分割数据集，并进行递归调用生成树
     feature_values = set(data_set[highest_gain_feature])
     for one_value in feature_values:
-        # 分割
+        # 分割D
         divided_data_set = data_set[data_set[highest_gain_feature] == one_value]
-        #去除列
+        # 去除列，A = A - {Ak}i
         divided_data_set = divided_data_set.drop(labels=highest_gain_feature, axis=1)
         # 生成子树
         decision_tree_dict[highest_gain_feature][one_value] = generate_decision_tree(divided_data_set, eps)
